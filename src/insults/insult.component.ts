@@ -5,12 +5,15 @@ import {Component} from "../core/decorators/component.decorator.ts";
     templateUrl: './insult.component.html',
 })
 export class InsultComponent {
-    // Placeholder for the loaded template
-    template: string = '';
-    render(target: HTMLElement){
-        if(this.template){
-            console.log('got data')
-            target.insertAdjacentHTML("beforeend", this.template)
+    templatePromise!: Promise<string>;
+
+    async render(target: HTMLElement){
+        if(target){
+            console.log(this.templatePromise);
+            const template = await this.templatePromise;
+
+            console.log('The template', template);
+            target.insertAdjacentHTML("beforeend",template)
         }
     }
 }
