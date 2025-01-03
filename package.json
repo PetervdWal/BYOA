@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build:embed": "node scripts/embed-template.cjs",
-    "dev": "npm run build:embed && vite",
+    "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
