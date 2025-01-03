@@ -1,7 +1,9 @@
 export class InsultComponent {
-    private readonly template = '<h3>Your face looks like a NS train</h3>';
-    render(target: HTMLElement){
+    private template: string = '<h3>Your face looks like a NS train</h3>'
 
-        target.innerHTML = this.template
+    render(target: HTMLElement){
+        if(this.template){
+            target.innerHTML = this.template
+        }
     }
 }

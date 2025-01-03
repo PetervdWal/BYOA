@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "build:embed": "node scripts/embed-template.cjs",
+    "dev": "npm run build:embed && vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
