@@ -5,7 +5,7 @@ function bootstrapApp(){
 
     if(appElement){
         const component = new InsultComponent();
-        component.render(appElement);
+        setTimeout(() => component.render(appElement), 100)
     }
 }
 
