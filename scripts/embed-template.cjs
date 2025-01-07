@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 
 
-const htmlPath = path.join(__dirname, '../src/insults/insult.component.html');
-const tsPath = path.join(__dirname, '../src/insults/insult.component.ts');
+const htmlPath = path.join(__dirname, '../src/insults/compliment.component.html');
+const tsPath = path.join(__dirname, '../src/insults/compliment.component.ts');
 const htmlContent = fs.readFileSync(htmlPath, 'utf8');
 
 // time to overwrite the code with html

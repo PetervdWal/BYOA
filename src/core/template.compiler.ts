@@ -2,10 +2,12 @@ export class TemplateCompiler{
     private templateCache = new Map<string, string>();
 
     async compile(templateUrl: string){
+        console.log(templateUrl);
         const cachedTemplate = this.templateCache.get(templateUrl);
         if(cachedTemplate){
             return cachedTemplate;
         }
+
 
         const template = await fetch(templateUrl)
             .then((response) => response.text());
