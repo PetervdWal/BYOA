@@ -1,0 +1,1 @@
+export type ComponentConstructor<T= object> =new () => T

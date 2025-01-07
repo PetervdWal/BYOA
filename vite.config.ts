@@ -1,9 +1,9 @@
 import {defineConfig} from "vite";
 import * as path from "path";
 import * as fs from "fs";
+import metaDataRegistry from "./src/core/meta-data-registry";
 
 export default defineConfig(() => {
-    const registry: Map<string, string> = new Map<string, string>();
     return {
         root: 'src',
             server: {
@@ -22,11 +22,20 @@ export default defineConfig(() => {
                     console.info('Building file registry...', __dirname);
                     if(id.endsWith('component.ts')){
                         const templateUrlRegex =/templateUrl:\s*['"](.*?)['"]/
-                        const matches = code.match(templateUrlRegex)
-                        if(matches){
-                            const relativeTemplateUrl = matches[1]
+                        const templateMatches = code.match(templateUrlRegex)
+                        const selectorRegex = /selector:\s*['"](.*?)['"]/
+                        const selectorMatches = code.match(selectorRegex)
+                        if(templateMatches && selectorMatches){
+
+                            const relativeTemplateUrl = templateMatches[1]
+                            const selector = selectorMatches[1];
                             const componentDirectoryName = path.dirname(id);
-                            registry.set(matches[1], path.resolve(componentDirectoryName, relativeTemplateUrl));
+                            metaDataRegistry.register(selector, {
+                                selector,
+                                templateUrl: relativeTemplateUrl,
+                                componentClass: Object,
+                                absoluteUrl: path.resolve(componentDirectoryName, relativeTemplateUrl)
+                            });
                         }
 
                     }
@@ -42,10 +51,9 @@ export default defineConfig(() => {
                                 const path = `.${req.originalUrl}`
                                 console.info('Attempting to get from registry', path)
 
-                                const originalPath = registry.get(path)
+                                const originalPath = metaDataRegistry.getComponentByRelativeUrl(path)
 
                                 // Resolve the file path based on the request
-
                                 console.log('Attempting to serve:', originalPath);
                                 if(originalPath && fs.existsSync(originalPath)){
                                     res.setHeader('Content-Type', 'text/html');
