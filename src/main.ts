@@ -10,13 +10,13 @@ async function bootstrapApp(){
         const component = new InsultComponent();
         const bComponent = new ComplimentComponent();
 
-        const metaData = metaDataRegistry.getMetaData('insult-component');
+        const metaData = metaDataRegistry.getMetaData('app-insult-component');
         if(metaData){
             const template =  await templateCompiler.compile(metaData.templateUrl)
             component.render(appElement, template);
         }
 
-        const complimentMetaData = metaDataRegistry.getMetaData('compliment-component');
+        const complimentMetaData = metaDataRegistry.getMetaData('app-compliment-component');
         if(complimentMetaData){
             const template =  await templateCompiler.compile(complimentMetaData.templateUrl)
             bComponent.render(appElement, template);

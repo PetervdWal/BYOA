@@ -1,7 +1,7 @@
 import {Component} from "../core/decorators/component.decorator.ts";
 
 @Component({
-    selector: 'compliment-component',
+    selector: 'app-compliment-component',
     templateUrl: './compliment.component.html',
 })
 export class ComplimentComponent {

@@ -1,7 +1,7 @@
 import {Component} from "../core/decorators/component.decorator.ts";
 
 @Component({
-    selector: 'insult-component',
+    selector: 'app-insult-component',
     templateUrl: './insult.component.html',
 })
 export class InsultComponent {
