@@ -2,7 +2,7 @@
 
 ## [0.2.0] - 2025-01-17
 ### Added
-- Recursive discovery and rendering of nested components.
+- Discovery of bootstrap component using AppModule
 - Vite plugin for registering components dynamically during build.
 
 ### Changed
